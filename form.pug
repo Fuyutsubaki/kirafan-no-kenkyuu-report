@@ -1,0 +1,50 @@
+doctype html
+html(lang="jp")
+  head
+    meta(charset="UTF-8")
+    link(rel="stylesheet",
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin="anonymous")
+    title 完凸シミュレーター
+  body
+    h1 きらファン完凸シミュレーター
+    p 天井(250連)をシミュレートします
+    form(method="post" action=path)
+      div
+        span 
+      div
+        label 確率:
+        input(type="number" name="base_ratio" value="1.0" step = 0.001 min = 0 max = 100) 
+      div 
+        label チャンスアップキーホルダーの所持数:
+        input(type="number" name="cuk_num" value="0" step = 10 min = 0 max = 250)
+      div
+        label リトライキーホルダーの所持数:
+        input(type="number" name="rk_num" value="0" step = 10 min = 0)
+      div
+        label 欲しい個数:
+        input(type="number" name="require_hit_num" value="1"  min = 0 max = 6)
+      div
+        label チャンスアップキーホルダーの使用戦略:
+        input(type="radio" name="strategy" value="1" checked=true) 
+        label 最初からガンガン使う
+        input(type="radio" name="strategy" value="2") 
+        label 天井付近まで極力使わない
+      button(type="submit") 投稿
+    table(border='1')
+      tr
+            th 回した回数
+            th 出たお目当ての回数
+            th 消費したチャンスアップキーホルダーの数
+            th 消費したリトライキーホルダーの数
+      each res in results 
+        tr
+          th #{res.num}
+          th #{res.hit}
+          th #{res.use_cuk_num}
+          th #{res.use_rk_num}
+    script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl",
+    crossorigin="anonymous")
