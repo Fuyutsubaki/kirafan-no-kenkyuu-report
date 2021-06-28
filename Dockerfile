@@ -9,3 +9,5 @@ ENV TZ Asia/Tokyo
 RUN yarn add pug@2.0.4
 RUN yarn global add pug-cli
 WORKDIR /workdir
+COPY . /workdir
+CMD ["sh", "run.sh"]
